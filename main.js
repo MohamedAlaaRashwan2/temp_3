@@ -126,7 +126,6 @@ let pricingBoxs = document.querySelectorAll(".pricing .box");
 
 window.addEventListener("resize", function () {
     if (window.innerWidth < 1200) {
-        console.log(window.innerWidth);
         pricingBoxs.forEach((box) => {
             box.addEventListener("mouseover", function () {
                 pricingBoxs.forEach((el) => {
@@ -190,7 +189,7 @@ window.onscroll = function () {
     }
 };
 
- 
+
 
 function updateNums(el) {
     let goal = +el.dataset.goal;
