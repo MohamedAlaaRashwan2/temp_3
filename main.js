@@ -1,41 +1,51 @@
-//  Start Header
 
+// Start Fade-in on scroll
+const sections = document.querySelectorAll('.section');
+const options = {
+    threshold: 0.06,
+    rootMargin: '0px 0px -100px 0px'
+}
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+        if (el.isIntersecting) {
+            el.target.classList.add('visible');
+            observer.unobserve(el.target);
+        }
+    });
+},options);
+
+sections.forEach(section=> observer.observe(section))
+// Start Header
 let links2 = document.querySelectorAll("header .main-nav>li>a ");
 
-
-
-links2.forEach(function (ele) {
+links2.forEach(ele => {
     ele.onclick = function () {
         if (this.classList.contains("active")) {
             this.classList.remove("active")
         } else {
 
-            links2.forEach(function (e) {
+            links2.forEach(e => {
                 e.classList.remove("active")
             })
             this.classList.toggle("active");
         }
     };
 });
-
-
 // Menu 
 let menu = document.getElementById("menu");
 let menu1 = document.querySelector(".mega-menu");
 // Show and hide the Menu when clicked
-menu.addEventListener("click", function (event) {
+menu.addEventListener("click", (event) => {
     menu1.classList.toggle("idmega-menu");
     event.stopPropagation();
 });
 // Hide the Menu when clicking somewhere on the page outside the menu
-document.addEventListener("click", function (event) {
+document.addEventListener("click", (event) => {
     if (!menu1.contains(event.target) && menu1.classList.contains("idmega-menu")) {
         menu1.classList.remove("idmega-menu")
     }
 });
 
-
-// إضافة كلاس sticky ديناميكيًا عند التمرير
 let navbar = document.getElementById('header');
 let stickyOffset = navbar.offsetTop;
 
@@ -50,56 +60,38 @@ window.addEventListener('scroll', () => {
 let lastScroll = 0;
 window.addEventListener('scroll', () => {
     if (window.scrollY > lastScroll) {
-        navbar.style.top = '-73px'; // إخفاء الناف بار
+        navbar.style.top = '-73px'; 
     } else {
-        navbar.style.top = '0'; // إظهاره
+        navbar.style.top = '0';
     }
     lastScroll = window.scrollY;
 });
-
 //  End Header
-
-
 // Start Skills
-
-
 let section = document.querySelector(".our-skills");
 let spans = document.querySelectorAll(".the-progress span");
-let spansSkill = document.querySelectorAll(".skill h3 span");
 
-let sectionOffsetTop;
-
-// Update offset on load and resize
-function updateOffset() {
-    sectionOffsetTop = section.offsetTop;
-}
-
-window.addEventListener("load", updateOffset);
-window.addEventListener("resize", updateOffset);
-
-window.addEventListener("scroll", function () {
-    if (window.scrollY >= sectionOffsetTop - 500) {
+const observer1 = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
         spans.forEach((span) => {
             span.style.width = span.dataset.width;
         });
     } else {
-        // Reset progress when scrolling up
         spans.forEach((span) => {
             span.style.width = "0";
         });
     }
-});
-
-
+}, { threshold: 0.5,
+    rootMargin: '300px 0px -100px 0px'
+ });
+observer1.observe(section);
 // End Skills
-
 // Start Events
 let days = document.getElementById("days");
 let hours = document.getElementById("hours");
 let minutes = document.getElementById("minutes");
 let seconds = document.getElementById("seconds");
-
-let countDownDate = new Date("Jan 20, 2026 15:37:25").getTime();
+let countDownDate = new Date("1/20/2026 15:37:25").getTime();
 
 let container = setInterval(() => {
     let dateNow = new Date().getTime();
@@ -114,18 +106,13 @@ let container = setInterval(() => {
     hours.textContent = hours2 < 10 ? `0${hours2}` : hours2;
     minutes.textContent = minutes2 < 10 ? `0${minutes2}` : minutes2;
     seconds.textContent = seconds2 < 10 ? `0${seconds2}` : seconds2;
-
-}, 1000);
-
-
+}, 1000)
 // End Events
-
 // Start pricing
-
 let pricingBoxs = document.querySelectorAll(".pricing .box");
 
 window.addEventListener("resize", function () {
-    if (window.innerWidth < 1200) {
+    if (window.innerWidth >= 1200) {
         pricingBoxs.forEach((box) => {
             box.addEventListener("mouseover", function () {
                 pricingBoxs.forEach((el) => {
@@ -149,11 +136,8 @@ window.addEventListener("resize", function () {
         });
     }
 });
-
 // End pricing
-
 // Start Video
-
 let videoList = document.querySelectorAll(".video .list li");
 let videoPreview = document.querySelector(".video .preview video");
 let videoInfo = document.querySelector(".video .preview .info");
@@ -171,11 +155,8 @@ videoList.forEach((li, index) => {
         });
     });
 });
-
 // End Video
-
 // Start Stats
-
 let nums = document.querySelectorAll(".stats .box .number");
 let sectionstats = document.querySelector(".stats");
 let started = false;
@@ -189,8 +170,6 @@ window.onscroll = function () {
     }
 };
 
-
-
 function updateNums(el) {
     let goal = +el.dataset.goal;
     let count = 0;
@@ -202,6 +181,4 @@ function updateNums(el) {
         }
     }, 2000 / goal);
 }
-
-
 // End Stats

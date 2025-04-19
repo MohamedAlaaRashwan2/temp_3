@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+.section{
+    opacity: 0; 
+    transform: translateY(30px); 
+    transition: opacity 0.6s ease, transform 0.6s ease; 
+}
+
+.section.visible {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
 :root {
     --main-color: #2196f3;
     --main-color-alt: #1478ca;
