@@ -2,7 +2,7 @@
 // Start Fade-in on scroll
 const sections = document.querySelectorAll('.section');
 const options = {
-    threshold: 0.06,
+    threshold: 0.08,
     rootMargin: '0px 0px -100px 0px'
 }
 const observer = new IntersectionObserver((entries) => {
@@ -19,7 +19,17 @@ sections.forEach(section=> observer.observe(section))
 let links2 = document.querySelectorAll("header .main-nav>li>a ");
 
 links2.forEach(ele => {
-    ele.onclick = function () {
+    ele.onclick = function (e) {
+        // Prevent default behavior and stop event propagation
+        e.preventDefault();
+        e.stopPropagation();
+        // Get the section ID from the data-scroll attribute
+        if(e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
+        let sectionId = e.target.getAttribute("data-scroll");
+            let section = document.getElementById(sectionId);
+            section.scrollIntoView();
+        }
+        // Toggle active class
         if (this.classList.contains("active")) {
             this.classList.remove("active")
         } else {
@@ -34,6 +44,19 @@ links2.forEach(ele => {
 // Menu 
 let menu = document.getElementById("menu");
 let menu1 = document.querySelector(".mega-menu");
+let menuLinks = document.querySelectorAll(".mega-menu .links a");
+
+menuLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
+            let sectionId = e.target.getAttribute("data-scroll");
+            let section = document.getElementById(sectionId);
+            section.scrollIntoView();
+        }
+    });
+});
 // Show and hide the Menu when clicked
 menu.addEventListener("click", (event) => {
     menu1.classList.toggle("idmega-menu");
@@ -112,7 +135,7 @@ let container = setInterval(() => {
 let pricingBoxs = document.querySelectorAll(".pricing .box");
 
 window.addEventListener("resize", function () {
-    if (window.innerWidth >= 1200) {
+    if (window.innerWidth > 1200) {
         pricingBoxs.forEach((box) => {
             box.addEventListener("mouseover", function () {
                 pricingBoxs.forEach((el) => {
@@ -134,7 +157,7 @@ window.addEventListener("resize", function () {
                 });
             });
         });
-    }
+    } 
 });
 // End pricing
 // Start Video

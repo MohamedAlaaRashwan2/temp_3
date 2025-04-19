@@ -25,6 +25,11 @@
     --section-background: #ececec;
 }
 
+::selection {
+    background-color: var(--main-color);
+    color: white;
+}
+
 html {
     scroll-behavior: smooth;
 }
