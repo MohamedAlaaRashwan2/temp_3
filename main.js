@@ -3,6 +3,7 @@
 window.addEventListener("load", () => {
     const loader = document.querySelector(".loader");
     loader.classList.add("loader-hidden");
+    document.body.classList.remove("on-scroll");
 });
 // End Loader
 // Start Fade-in on scroll
