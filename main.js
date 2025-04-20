@@ -8,6 +8,7 @@ window.addEventListener("load", () => {
 // End Loader
 // Start Fade-in on scroll
 const sections = document.querySelectorAll('.section');
+
 const options = {
     threshold: 0.08,
     rootMargin: '0px 0px -100px 0px'
@@ -37,8 +38,9 @@ links2.forEach(ele => {
             section.scrollIntoView();
         }
         // Toggle active class
-        if (this.classList.contains("active")) {
-            this.classList.remove("active")
+        const menu = document.getElementById("menu");
+        if (menu.classList.contains("active")) {
+            menu.classList.remove("active")
         } else {
 
             links2.forEach(e => {
