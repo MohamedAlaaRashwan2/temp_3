@@ -1,4 +1,10 @@
 
+// Start Loader
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+    loader.classList.add("loader-hidden");
+});
+// End Loader
 // Start Fade-in on scroll
 const sections = document.querySelectorAll('.section');
 const options = {
