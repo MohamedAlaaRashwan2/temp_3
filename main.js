@@ -1,4 +1,19 @@
 
+// Start Typewriter
+const text = "Here Iam gonna share everything about my life. Books Iam reading, Games Iam Playing, Stories and Events";
+let index = 0;
+const speed = 100;
+
+function type() {
+    if (index < text.length) {
+        document.getElementById("typewriter").textContent += text[index];
+        index++;
+        console.log(index);
+        setTimeout(type, speed);
+    }
+}
+window.onload = type;
+// End Typewriter
 // Start Loader
 window.addEventListener("load", () => {
     const loader = document.querySelector(".loader");
@@ -20,9 +35,9 @@ const observer = new IntersectionObserver((entries) => {
             observer.unobserve(el.target);
         }
     });
-},options);
+}, options);
 
-sections.forEach(section=> observer.observe(section))
+sections.forEach(section => observer.observe(section))
 // Start Header
 let links2 = document.querySelectorAll("header .main-nav>li>a ");
 
@@ -32,8 +47,8 @@ links2.forEach(ele => {
         e.preventDefault();
         e.stopPropagation();
         // Get the section ID from the data-scroll attribute
-        if(e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
-        let sectionId = e.target.getAttribute("data-scroll");
+        if (e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
+            let sectionId = e.target.getAttribute("data-scroll");
             let section = document.getElementById(sectionId);
             section.scrollIntoView();
         }
@@ -59,7 +74,7 @@ menuLinks.forEach(link => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if(e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
+        if (e.target.getAttribute("data-scroll")) { // that (if) because the menu has no data-scroll attribute
             let sectionId = e.target.getAttribute("data-scroll");
             let section = document.getElementById(sectionId);
             section.scrollIntoView();
@@ -92,7 +107,7 @@ window.addEventListener('scroll', () => {
 let lastScroll = 0;
 window.addEventListener('scroll', () => {
     if (window.scrollY > lastScroll) {
-        navbar.style.top = '-73px'; 
+        navbar.style.top = '-73px';
     } else {
         navbar.style.top = '0';
     }
@@ -113,9 +128,10 @@ const observer1 = new IntersectionObserver((entries) => {
             span.style.width = "0";
         });
     }
-}, { threshold: 0.5,
+}, {
+    threshold: 0.5,
     rootMargin: '300px 0px -100px 0px'
- });
+});
 observer1.observe(section);
 // End Skills
 // Start Events
@@ -166,7 +182,7 @@ window.addEventListener("resize", function () {
                 });
             });
         });
-    } 
+    }
 });
 // End pricing
 // Start Video
